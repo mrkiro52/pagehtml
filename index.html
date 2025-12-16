@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -254,40 +254,13 @@
             }
         }
 
-        .success-message {
-            display: none;
-            background: #e8f5e9;
-            border: 2px solid #4caf50;
-            color: #2e7d32;
-            padding: 16px;
-            border-radius: 10px;
-            margin-top: 20px;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        .success-message.show {
-            display: block;
-            animation: slideIn 0.3s ease-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>Building & Death</h1>
-            <p>Размышления о создании и конце</p>
+            <p>Reflections on creation and the end</p>
         </div>
 
         <div class="content">
@@ -295,44 +268,44 @@
                 <div class="section">
                     <h2><span class="section-icon">🏗️</span> Building</h2>
                     <p>
-                        Строительство — это искусство создавать что-то прочное и значимое. 
-                        Каждый новый проект начинается с мечты и развивается через упорный труд, 
-                        творчество и определённость.
+                        Building is the art of creating something solid and meaningful. 
+                        Every new project begins with a dream and develops through hard work, 
+                        creativity and determination.
                     </p>
                     <p>
-                        Настоящее здание стоит столетиями, его архитектура вдохновляет поколения. 
-                        От фундамента до крыши, каждый элемент несёт важность и назначение.
+                        A true building stands for centuries, its architecture inspiring generations. 
+                        From foundation to roof, every element carries importance and purpose.
                     </p>
                 </div>
 
                 <div class="section">
                     <h2><span class="section-icon">🌙</span> Death</h2>
                     <p>
-                        Смерть — это не конец, а часть естественного цикла. Она придаёт жизни 
-                        ценность и смысл. Жизнь между началом и концом — это драгоценный момент.
+                        Death is not an end, but part of a natural cycle. It gives life 
+                        value and meaning. The life between beginning and end is a precious moment.
                     </p>
                     <p>
-                        Понимая нашу конечность, мы осознаём важность каждого дня. Смерть учит 
-                        нас жить осознанно и оставлять наследие своих дел.
+                        By understanding our mortality, we realize the importance of every day. Death teaches 
+                        us to live consciously and to leave a legacy of our deeds.
                     </p>
                 </div>
 
                 <div class="form-section">
-                    <h3>📝 Поделитесь своими мыслями</h3>
-                    <form id="thoughtsForm">
+                    <h3>📝 Share Your Thoughts</h3>
+                    <form>
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="name">Ваше имя</label>
+                                <label for="name">Your Name</label>
                                 <input
                                     type="text"
                                     id="name"
                                     name="name"
-                                    placeholder="Введите ваше имя"
+                                    placeholder="Enter your name"
                                     required
                                 />
                             </div>
                             <div class="form-group">
-                                <label for="email">Электронная почта</label>
+                                <label for="email">Email Address</label>
                                 <input
                                     type="email"
                                     id="email"
@@ -344,60 +317,23 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="thoughts">Ваши размышления</label>
+                            <label for="thoughts">Your Thoughts</label>
                             <textarea
                                 id="thoughts"
                                 name="thoughts"
-                                placeholder="Поделитесь вашими мыслями о жизни, строительстве и смерти..."
+                                placeholder="Share your thoughts on life, building and death..."
                                 required
                             ></textarea>
                         </div>
 
                         <div class="button-group">
-                            <button type="submit" class="btn-primary">Отправить</button>
-                            <button type="reset" class="btn-secondary">Очистить</button>
-                        </div>
-
-                        <div class="success-message" id="successMessage">
-                            ✓ Спасибо! Ваше сообщение успешно отправлено.
+                            <button type="submit" class="btn-primary">Submit</button>
+                            <button type="reset" class="btn-secondary">Clear</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        const form = document.getElementById('thoughtsForm');
-        const successMessage = document.getElementById('successMessage');
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Получить значения формы
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const thoughts = document.getElementById('thoughts').value;
-
-            // Показать сообщение об успехе
-            successMessage.classList.add('show');
-
-            // Очистить форму
-            form.reset();
-
-            // Скрыть сообщение через 4 секунды
-            setTimeout(() => {
-                successMessage.classList.remove('show');
-            }, 4000);
-
-            // Вывести данные в консоль (для демонстрации)
-            console.log({
-                name,
-                email,
-                thoughts,
-                timestamp: new Date().toLocaleString('ru-RU')
-            });
-        });
-    </script>
 </body>
 </html>
