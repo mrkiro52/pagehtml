@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building & Death</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+                sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 50px 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            font-size: 18px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .content {
+            padding: 50px 40px;
+        }
+
+        .sections {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .section {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            font-size: 32px;
+            display: inline-block;
+        }
+
+        .section p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .form-section {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 15px;
+            grid-column: 1 / -1;
+        }
+
+        .form-section h3 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: white;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #999;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+            font-family: inherit;
+        }
+
+        .form-row textarea {
+            grid-column: 1 / -1;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 14px 32px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            flex: 1;
+            max-width: 200px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            flex: 1;
+            max-width: 200px;
+        }
+
+        .btn-secondary:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 30px;
+            }
+
+            .header h1 {
+                font-size: 36px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .sections {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .form-section {
+                padding: 30px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                max-width: none;
+                width: 100%;
+            }
+        }
+
+        .success-message {
+            display: none;
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            color: #2e7d32;
+            padding: 16px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Building & Death</h1>
+            <p>Размышления о создании и конце</p>
+        </div>
+
+        <div class="content">
+            <div class="sections">
+                <div class="section">
+                    <h2><span class="section-icon">🏗️</span> Building</h2>
+                    <p>
+                        Строительство — это искусство создавать что-то прочное и значимое. 
+                        Каждый новый проект начинается с мечты и развивается через упорный труд, 
+                        творчество и определённость.
+                    </p>
+                    <p>
+                        Настоящее здание стоит столетиями, его архитектура вдохновляет поколения. 
+                        От фундамента до крыши, каждый элемент несёт важность и назначение.
+                    </p>
+                </div>
+
+                <div class="section">
+                    <h2><span class="section-icon">🌙</span> Death</h2>
+                    <p>
+                        Смерть — это не конец, а часть естественного цикла. Она придаёт жизни 
+                        ценность и смысл. Жизнь между началом и концом — это драгоценный момент.
+                    </p>
+                    <p>
+                        Понимая нашу конечность, мы осознаём важность каждого дня. Смерть учит 
+                        нас жить осознанно и оставлять наследие своих дел.
+                    </p>
+                </div>
+
+                <div class="form-section">
+                    <h3>📝 Поделитесь своими мыслями</h3>
+                    <form id="thoughtsForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Ваше имя</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder="Введите ваше имя"
+                                    required
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Электронная почта</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="your@email.com"
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="thoughts">Ваши размышления</label>
+                            <textarea
+                                id="thoughts"
+                                name="thoughts"
+                                placeholder="Поделитесь вашими мыслями о жизни, строительстве и смерти..."
+                                required
+                            ></textarea>
+                        </div>
+
+                        <div class="button-group">
+                            <button type="submit" class="btn-primary">Отправить</button>
+                            <button type="reset" class="btn-secondary">Очистить</button>
+                        </div>
+
+                        <div class="success-message" id="successMessage">
+                            ✓ Спасибо! Ваше сообщение успешно отправлено.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('thoughtsForm');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Получить значения формы
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const thoughts = document.getElementById('thoughts').value;
+
+            // Показать сообщение об успехе
+            successMessage.classList.add('show');
+
+            // Очистить форму
+            form.reset();
+
+            // Скрыть сообщение через 4 секунды
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 4000);
+
+            // Вывести данные в консоль (для демонстрации)
+            console.log({
+                name,
+                email,
+                thoughts,
+                timestamp: new Date().toLocaleString('ru-RU')
+            });
+        });
+    </script>
+</body>
+</html>
